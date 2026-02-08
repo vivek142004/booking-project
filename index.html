@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VISHWAKARMA ENTERPRISES - Electrician, Plumbing, Furniture, Windows & Painter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #444;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background: #666;
+    }
+    section {
+      padding: 40px;
+      text-align: center;
+    }
+    .services {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: 300px;
+      margin: 20px;
+      padding: 20px;
+    }
+    .card h3 {
+      color: #333;
+    }
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+    button {
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>VISHWAKARMA ENTERPRISES</h1>
+    <p>Electrician • Plumbing • Furniture • Windows • Painting</p>
+  </header>
+
+  <nav>
+    <a href="#electrician">Electrician</a>
+    <a href="#plumbing">Plumbing</a>
+    <a href="#furniture">Furniture</a>
+    <a href="#windows">Windows</a>
+    <a href="#painting">Painting</a>
+    <a href="#contact">Contact</a>
+    <a href="#booking">Book Service</a>
+  </nav>
+
+  <!-- Electrician -->
+  <section id="electrician">
+    <img src="electrician.png" alt="Electrician" style="width:200px; height:200px;">
+    <h1>Electrician Services</h1>
+    <div class="services">
+      <div class="card">
+        <img src="homerepair.png" alt="Wiring" style="width:100px; height:100px;">
+        <h3>Wiring & Installation</h3>
+        <p>Professional wiring, lighting, and electrical setup.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="repairing.png" alt="Repair" style="width:100px; height:100px;">
+        <h3>Repair & Maintenance</h3>
+        <p>Quick fixes for electrical issues at home or office.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+    </div>
+  </section>
+  <span></span>
+
+  <!-- Plumbing -->
+  <section id="plumbing">
+    <img src="plumbingservices.png" alt="Plumbing" style="width:200px; height:200px;"> 
+    <h1>Plumbing Services</h1>
+    <div class="services">
+      <div class="card">
+        <img src="leakagereapair.png" alt="Leak Repair" style="width:100px; height:100px;">
+        <h3>Leak Repairs</h3>
+        <p>Fixing taps, pipes, and water leaks efficiently.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="bathroomsetup.png" alt="Bathroom Setup" style="width:100px; height:100px;">
+        <h3>Bathroom Setup</h3>
+        <p>Complete installation of bathroom fittings and pipelines.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Furniture -->
+  <section id="furniture">
+    <img src="furnitureworks.png" alt="Furniture" style="width:400px; height:200px;">
+    <h1>Furniture Works</h1>
+    <div class="services">
+      <div class="card">
+        <img src="customfurniture.png" alt="Custom Furniture" style="width:100px; height:100px;">
+        <h3>Custom Furniture</h3>
+        <p>Design and build furniture tailored to your needs.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="furniturerepair.png" alt="Furniture Repair" style="width:100px; height:100px;">
+        <h3>Repair & Polishing</h3>
+        <p>Restore old furniture with expert repair and polish.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Windows -->
+  <section id="windows">
+    <img src="windowworks.png" alt="Windows" style="width:400px; height:200px;">
+    <h1>Windows Works</h1>
+    <div class="services">
+      <div class="card">
+        <img src="windowinstall.png" alt="Window Installation" style="width:100px; height:100px;">
+        <h3>Window Installation</h3>
+        <p>Professional installation of modern and durable windows.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="windowrepair.png" alt="Window Repair" style="width:100px; height:100px;">
+        <h3>Repair & Replacement</h3>
+        <p>Fix broken glass, frames, and window fittings.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Painter -->
+  <section id="painter">
+    <img src="paintfront.png" alt="Painter" style="width:400px; height:200px;">
+    <h1>Painting Works</h1>
+    <div class="services">
+      <div class="card">
+        <img src="interiorpainting.png" alt="Interior Painting" style="width:100px; height:100px;">
+        <h3>Interior Painting</h3>
+        <p>Beautiful wall finishes and color combinations for your home.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="exteriorpainting.png" alt="Exterior Painting" style="width:100px; height:100px;">
+        <h3>Exterior Painting</h3>
+        <p>Weather-resistant paints to protect and beautify your building.</p>
+        <button onclick="window.location.href='#booking'">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+
+  <form id="bookingForm">
+  <select name="service" id="service" required>
+    <option value="">Select Service</option>
+    <option value="Electrician">Electrician</option>
+    <option value="Plumbing">Plumbing</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Windows">Windows</option>
+    <option value="Grilling">Grilling</option>
+  </select>
+
+  <input type="text" name="name" id="name" placeholder="Your Name" required />
+  <input type="tel" name="phone" id="phone" placeholder="Phone" required />
+
+  <button type="submit">Book Now</button>
+</form>
+
+<p id="msg"></p>
+
+
+  
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: vishwakarmaenterprise6068@gmail.com | Phone: +91 9892776068  |  +91 9730488747</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Home Services. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

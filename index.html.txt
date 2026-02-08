@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Services - Electrician, Plumbing & Furniture</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #444;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background: #666;
+    }
+    section {
+      padding: 40px;
+      text-align: center;
+    }
+    .services {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: 300px;
+      margin: 20px;
+      padding: 20px;
+    }
+    .card h3 {
+      color: #333;
+    }
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+    button {
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Home Services</h1>
+    <p>Electrician • Plumbing • Furniture Works</p>
+  </header>
+
+  <nav>
+    <a href="#electrician">Electrician</a>
+    <a href="#plumbing">Plumbing</a>
+    <a href="#furniture">Furniture</a>
+    <a href="#contact">Contact</a>
+    <a href="#booking">Book Service</a>
+  </nav>
+
+  <section id="electrician">
+    <h2>Electrician Services</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Wiring & Installation</h3>
+        <p>Professional wiring, lighting, and electrical setup.</p>
+        <button>Book Now</button>
+      </div>
+      <div class="card">
+        <h3>Repair & Maintenance</h3>
+        <p>Quick fixes for electrical issues at home or office.</p>
+        <button>Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="plumbing">
+    <h2>Plumbing Services</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Leak Repairs</h3>
+        <p>Fixing taps, pipes, and water leaks efficiently.</p>
+        <button>Book Now</button>
+      </div>
+      <div class="card">
+        <h3>Bathroom Setup</h3>
+        <p>Complete installation of bathroom fittings and pipelines.</p>
+        <button>Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="furniture">
+    <h2>Furniture Works</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Custom Furniture</h3>
+        <p>Design and build furniture tailored to your needs.</p>
+        <button>Book Now</button>
+      </div>
+      <div class="card">
+        <h3>Repair & Polishing</h3>
+        <p>Restore old furniture with expert repair and polish.</p>
+        <button>Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <h2>Book a Service</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <select id="service" required>
+        <option value="">Select Service</option>
+        <option value="Electrician">Electrician</option>
+        <option value="Plumbing">Plumbing</option>
+        <option value="Furniture">Furniture</option>
+      </select>
+      <textarea id="message" rows="4" placeholder="Describe your requirement"></textarea>
+      <button type="submit">Submit Booking</button>
+    </form>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@homeservices.com | Phone: +91 98765 43210</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Home Services. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value;
+
+      alert(`Thank you, ${name}! Your ${service} request has been received. We will contact you at ${phone}.`);
+    }
+  </script>
+  <section id="booking">
+  <h2>Book a Service</h2>
+  <form action="booking.php" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <select name="service" required>
+      <option value="">Select Service</option>
+      <option value="Electrician">Electrician</option>
+      <option value="Plumbing">Plumbing</option>
+      <option value="Furniture">Furniture</option>
+    </select>
+    <textarea name="message" rows="4" placeholder="Describe your requirement"></textarea>
+    <button type="submit">Submit Booking</button>
+  </form>
+</section>
+<form action="backend/booking.php" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <button type="submit">Submit</button>
+</form>
+
+
+</body>
+</html>
