@@ -25,12 +25,19 @@ const transporter = nodemailer.createTransport({
 
 // BOOKING API
 app.post("/booking", async (req, res) => {
-  const { service, name, email, phone, message } = req.body;
+  
+const { service, name, email, phone, message } = req.body;
+  console.log("FULL BODY:", req.body);
   console.log("MESSAGE FROM USER:", message);
 
-  if (!service || !name || !email || !phone || !message) {
-    return res.status(400).json({ message: "Missing fields ❌" });
+  if (!service || !name || !email || !phone) {
+    return res.status(400).json({ message: "Missing fields" });
   }
+
+  sznaizlhaqsbkrun// email code here
+});
+
+
 
   try {
     await transporter.sendMail({
@@ -42,8 +49,7 @@ Service: ${service}
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
-Requirement: 
-${message}
+Requirement: ${message}
       `,
     });
 
@@ -57,7 +63,7 @@ ${message}
       error: err.message,
     });
   }
-});
+;
 
 // SERVER
 app.listen(3000, () => {

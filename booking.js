@@ -12,7 +12,7 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
   console.log("📤 Sending booking:", { service, name, email, phone, message });
 
   if (!service || !name || !email || !phone) {
-    document.getElementById("msg").innerText = "❌ Please fill required fields";
+    document.getElementById("messageg").innerText = "❌ Please fill required fields";
     return;
   }
 
@@ -68,8 +68,13 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ service, name, email, phone })
+      body: JSON.stringify({ service, name, email, phone  })
     });
+
+    const message = document.getElementById("message").value;
+
+       body: JSON.stringify({ service, name,  email,  phone,  message});
+ 
 
     const data = await res.json();
     document.getElementById("msg").innerText = data.message;
