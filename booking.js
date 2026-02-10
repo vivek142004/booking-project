@@ -63,12 +63,12 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/booking", {
+    const res = await fetch("https://YOUR-BACKEND.vercel.app/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ service, name, email, phone  })
+      body: JSON.stringify({ service, name, email, phone, message })
     });
 
     const message = document.getElementById("message").value;
