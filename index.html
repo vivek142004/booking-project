@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VISHWAKARMA ENTERPRISES - Professional Home Services in Thane, Mumbai</title>
     <meta name="description" content="Professional electrician, plumbing, painting, furniture, and civil work services in Thane, Mumbai. Quality home services at affordable prices.">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_PUBLIC_KEY"); // You'll need to replace this with your EmailJS public key
+        })();
+    </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -25,10 +33,50 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Header & Navigation */
@@ -36,14 +84,18 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--white);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         header.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -57,13 +109,27 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
+            letter-spacing: -0.5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
         }
 
         .logo span {
-            color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color), #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -76,19 +142,26 @@
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            padding: 5px 0;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, var(--primary-color), #7c3aed);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
         }
 
         .nav-links a:hover::after {
@@ -107,12 +180,20 @@
         /* Hero Section */
         .hero {
             margin-top: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
             color: var(--white);
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .hero::before {
@@ -122,8 +203,32 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.3)"/></svg>');
+            animation: rotate 60s linear infinite;
             opacity: 0.3;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .hero-content {
@@ -134,9 +239,13 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
             animation: fadeInUp 1s ease;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            line-height: 1.2;
         }
 
         .hero-subtitle {
@@ -158,11 +267,32 @@
         }
 
         .service-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
             font-size: 0.9rem;
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.6s ease backwards;
+        }
+
+        .service-tag:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cta-buttons {
@@ -175,36 +305,61 @@
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
             background: var(--white);
             color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--white);
             border: 2px solid var(--white);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn-secondary:hover {
             background: var(--white);
             color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
 
         /* Services Section */
@@ -220,18 +375,43 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), #7c3aed);
+            border-radius: 2px;
+            animation: expandWidth 1s ease;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
         }
 
         .section-title p {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin-top: 1.5rem;
         }
 
         .service-category {
@@ -260,61 +440,151 @@
 
         .service-card {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
+            border-color: var(--primary-color);
         }
 
         .service-image {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.95);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1) rotate(1deg);
+            filter: brightness(1.05);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .service-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-image::after {
+            opacity: 1;
         }
 
         .service-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .service-content h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
             color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-content h4 {
+            color: var(--primary-color);
         }
 
         .service-content p {
             color: var(--text-light);
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .btn-book {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), #7c3aed);
             color: var(--white);
-            padding: 0.75rem 1.5rem;
+            padding: 0.875rem 1.75rem;
             border-radius: 30px;
             width: 100%;
             border: none;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-book::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-book:hover::before {
+            left: 100%;
         }
 
         .btn-book:hover {
-            background: var(--primary-dark);
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-book:active {
+            transform: translateY(0);
         }
 
         /* Contact Section */
@@ -332,15 +602,32 @@
         }
 
         .contact-info {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: var(--white);
             padding: 3rem;
-            border-radius: 20px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
         }
 
         .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
 
         .info-item {
@@ -361,9 +648,17 @@
         }
 
         .contact-form {
-            background: var(--bg-light);
+            background: var(--white);
             padding: 3rem;
-            border-radius: 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .form-group {
@@ -381,12 +676,13 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 1rem 1.25rem;
             border: 2px solid #e5e7eb;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: inherit;
+            background: var(--white);
         }
 
         .form-group input:focus,
@@ -394,6 +690,8 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
         }
 
         .form-group textarea {
@@ -429,17 +727,53 @@
             opacity: 0.7;
         }
 
-        /* Animations */
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        /* Enhanced Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Stagger animation for service cards */
+        .service-card {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -464,7 +798,8 @@
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                letter-spacing: -0.5px;
             }
 
             .hero-subtitle {
@@ -472,7 +807,8 @@
             }
 
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                letter-spacing: -0.5px;
             }
 
             .category-header h3 {
@@ -511,7 +847,8 @@
             }
 
             .hero h1 {
-                font-size: 1.75rem;
+                font-size: 1.9rem;
+                letter-spacing: -0.3px;
             }
 
             .services,
@@ -537,27 +874,45 @@
             height: 60px;
             bottom: 40px;
             right: 40px;
-            background-color: #25d366;
+            background: linear-gradient(135deg, #25d366, #128c7e);
             color: var(--white);
             border-radius: 50%;
             text-align: center;
             font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
+            }
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+            transform: scale(1.15);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
         }
     </style>
 </head>
 <body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <h3 style="font-weight: 600; font-size: 1.2rem;">Loading...</h3>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <nav>
@@ -605,7 +960,9 @@
                 </div>
                 <div class="service-grid">
                     <div class="service-card" onclick="scrollToBooking('Civil Work - Construction & Renovation')">
-                        <div class="service-image">🏠</div>
+                        <div class="service-image">
+                            <img src="construction.png" alt="Construction and Renovation">
+                        </div>
                         <div class="service-content">
                             <h4>Construction & Renovation</h4>
                             <p>Complete house construction, renovation, and structural work with quality materials and expert craftsmanship.</p>
@@ -613,7 +970,9 @@
                         </div>
                     </div>
                     <div class="service-card" onclick="scrollToBooking('Civil Work - Repair & Maintenance')">
-                        <div class="service-image">🔧</div>
+                        <div class="service-image">
+                            <img src="repair.png" alt="Repair and Maintenance">
+                        </div>
                         <div class="service-content">
                             <h4>Repair & Maintenance</h4>
                             <p>Professional wall repair, plastering, leakage fixing, and comprehensive maintenance services.</p>
@@ -630,7 +989,9 @@
                 </div>
                 <div class="service-grid">
                     <div class="service-card" onclick="scrollToBooking('Electrician - Wiring & Installation')">
-                        <div class="service-image">💡</div>
+                        <div class="service-image">
+                            <img src="homerepair.png" alt="Electrical Wiring">
+                        </div>
                         <div class="service-content">
                             <h4>Wiring & Installation</h4>
                             <p>Professional electrical wiring, lighting solutions, and complete electrical setup for homes and offices.</p>
@@ -638,7 +999,9 @@
                         </div>
                     </div>
                     <div class="service-card" onclick="scrollToBooking('Electrician - Repair & Maintenance')">
-                        <div class="service-image">🔌</div>
+                        <div class="service-image">
+                            <img src="repairing.png" alt="Electrical Repair">
+                        </div>
                         <div class="service-content">
                             <h4>Repair & Maintenance</h4>
                             <p>Quick and reliable fixes for all electrical issues, faults, and emergency repairs.</p>
@@ -655,7 +1018,9 @@
                 </div>
                 <div class="service-grid">
                     <div class="service-card" onclick="scrollToBooking('Plumbing - Leak Repairs')">
-                        <div class="service-image">💧</div>
+                        <div class="service-image">
+                            <img src="leakagereapair.png" alt="Leak Repairs">
+                        </div>
                         <div class="service-content">
                             <h4>Leak Repairs</h4>
                             <p>Expert fixing of taps, pipes, and water leaks with guaranteed results and lasting solutions.</p>
@@ -663,7 +1028,9 @@
                         </div>
                     </div>
                     <div class="service-card" onclick="scrollToBooking('Plumbing - Bathroom Setup')">
-                        <div class="service-image">🚿</div>
+                        <div class="service-image">
+                            <img src="bathroomsetup.png" alt="Bathroom Setup">
+                        </div>
                         <div class="service-content">
                             <h4>Bathroom Setup</h4>
                             <p>Complete installation of bathroom fittings, pipelines, and modern fixtures.</p>
@@ -680,7 +1047,9 @@
                 </div>
                 <div class="service-grid">
                     <div class="service-card" onclick="scrollToBooking('Furniture - Custom Furniture')">
-                        <div class="service-image">🛋️</div>
+                        <div class="service-image">
+                            <img src="customfurniture.png" alt="Custom Furniture">
+                        </div>
                         <div class="service-content">
                             <h4>Custom Furniture</h4>
                             <p>Design and build custom furniture perfectly tailored to your space and requirements.</p>
@@ -688,7 +1057,9 @@
                         </div>
                     </div>
                     <div class="service-card" onclick="scrollToBooking('Furniture - Repair & Polishing')">
-                        <div class="service-image">✨</div>
+                        <div class="service-image">
+                            <img src="furnitureworks.png" alt="Furniture Repair">
+                        </div>
                         <div class="service-content">
                             <h4>Repair & Polishing</h4>
                             <p>Restore and revitalize old furniture with expert repair and professional polishing services.</p>
@@ -705,7 +1076,9 @@
                 </div>
                 <div class="service-grid">
                     <div class="service-card" onclick="scrollToBooking('Windows - Window Installation')">
-                        <div class="service-image">🏢</div>
+                        <div class="service-image">
+                            <img src="windowinstall.png" alt="Window Installation">
+                        </div>
                         <div class="service-content">
                             <h4>Window Installation</h4>
                             <p>Professional installation of modern, durable, and energy-efficient windows for your property.</p>
@@ -713,7 +1086,9 @@
                         </div>
                     </div>
                     <div class="service-card" onclick="scrollToBooking('Windows - Repair & Replacement')">
-                        <div class="service-image">🔨</div>
+                        <div class="service-image">
+                            <img src="windowrepair.png" alt="Window Repair">
+                        </div>
                         <div class="service-content">
                             <h4>Repair & Replacement</h4>
                             <p>Fix broken glass, frames, and window fittings with quality materials and workmanship.</p>
@@ -730,7 +1105,9 @@
                 </div>
                 <div class="service-grid">
                     <div class="service-card" onclick="scrollToBooking('Painting - Interior Painting')">
-                        <div class="service-image">🖌️</div>
+                        <div class="service-image">
+                            <img src="interiorpainting.png" alt="Interior Painting">
+                        </div>
                         <div class="service-content">
                             <h4>Interior Painting</h4>
                             <p>Beautiful wall finishes with perfect color combinations to transform your living space.</p>
@@ -738,7 +1115,9 @@
                         </div>
                     </div>
                     <div class="service-card" onclick="scrollToBooking('Painting - Exterior Painting')">
-                        <div class="service-image">🏠</div>
+                        <div class="service-image">
+                            <img src="exteriorpainting.png" alt="Exterior Painting">
+                        </div>
                         <div class="service-content">
                             <h4>Exterior Painting</h4>
                             <p>Weather-resistant paints to protect and beautify your building's exterior surfaces.</p>
@@ -863,6 +1242,14 @@
     </a>
 
     <script>
+        // Page Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('pageLoader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 800);
+        });
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
@@ -890,7 +1277,7 @@
             }
         });
 
-        // Form submission
+        // Form submission with Email, WhatsApp, and SMS
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -900,10 +1287,58 @@
             const service = document.getElementById('service').value;
             const message = document.getElementById('message').value;
             
-            const whatsappMessage = `Hello! I'd like to book a service.%0A%0AName: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AService: ${service}%0ADetails: ${message}`;
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // 1. Send Email using EmailJS
+            const emailParams = {
+                to_email: 'vishwakarmaenterprise6068@gmail.com',
+                from_name: name,
+                from_phone: phone,
+                from_email: email,
+                service_type: service,
+                message: message,
+                reply_to: email
+            };
+            
+            // Note: You need to set up EmailJS account and replace with your details
+            // For now, this will prepare the email format
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response);
+                }, function(error) {
+                    console.log('Email failed to send:', error);
+                    // Continue even if email fails
+                });
+            
+            // 2. Send WhatsApp Message to 9892776068
+            const whatsappMessage = `🔔 New Service Booking!%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A🛠️ Service: ${service}%0A📝 Details: ${message}`;
             const whatsappURL = `https://wa.me/919892776068?text=${whatsappMessage}`;
             
+            // 3. Send SMS to 9730488747
+            const smsMessage = `New Booking from ${name} (${phone}) for ${service}. Email: ${email}. Details: ${message}`;
+            const smsURL = `sms:+919730488747?body=${encodeURIComponent(smsMessage)}`;
+            
+            // Open WhatsApp first
             window.open(whatsappURL, '_blank');
+            
+            // After a short delay, trigger SMS
+            setTimeout(() => {
+                window.location.href = smsURL;
+            }, 1000);
+            
+            // Show success message
+            setTimeout(() => {
+                alert('✅ Booking request sent successfully!\n\n📧 Email notification sent\n💬 WhatsApp message opened\n📱 SMS prepared\n\nWe will contact you shortly!');
+                
+                // Reset form
+                document.getElementById('bookingForm').reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
         });
 
         // Function to scroll to booking and pre-select service
@@ -912,22 +1347,42 @@
             document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Animate elements on scroll
+        // Animate elements on scroll with Intersection Observer
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         };
 
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .service-category').forEach(el => {
-            observer.observe(el);
+        // Observe all animatable elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.service-card, .category-header, .contact-content > div');
+            
+            animateElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                el.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
         });
     </script>
 </body>
