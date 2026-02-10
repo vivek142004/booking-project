@@ -34,17 +34,18 @@ const { service, name, email, phone, message } = req.body;
     return res.status(400).json({ message: "Missing fields" });
   }
 
-  sznaizlhaqsbkrun// email code here
+  
 });
 
-
+ // email code here
 
   try {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.OWNER_EMAIL,
       subject: "New Booking",
-      text: `
+      text: "message from user: " + message,
+      html: `
 Service: ${service}
 Name: ${name}
 Email: ${email}

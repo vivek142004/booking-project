@@ -1,329 +1,934 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>VISHWAKARMA ENTERPRISES - Electrician, Plumbing, Furniture, Windows & Painter</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-    }
-    header {
-      background: #df0a0a;
-      color: #0e0e0e;
-      padding: 15px;
-      text-align: center;
-    }
-    nav {
-      background: #444;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: #fff;
-      padding: 14px 20px;
-      text-decoration: none;
-    }
-    nav a:hover {
-      background: #666;
-    }
-    section {
-      padding: 40px;
-      text-align: center;
-    }
-    .services {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      width: 250px;
-      height: 250px;
-      margin: 20px;
-      padding: 20px;
-    }
-    .card h3 {
-      color: #333;
-    }
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-    }
-    button {
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    form button {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-    }
-    @media (max-width: 768px) {
-      .services {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISHWAKARMA ENTERPRISES - Professional Home Services in Thane, Mumbai</title>
+    <meta name="description" content="Professional electrician, plumbing, painting, furniture, and civil work services in Thane, Mumbai. Quality home services at affordable prices.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: backwards;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: backwards;
+        }
+
+        .service-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s;
+            animation-fill-mode: backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .service-category {
+            margin-bottom: 5rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .category-header h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .btn-book {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            width: 100%;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-book:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .info-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-form {
+            background: var(--bg-light);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            margin-bottom: 2rem;
+        }
+
+        .footer-info p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .category-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .services,
+            .contact {
+                padding: 3rem 1rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">VISHWAKARMA <span>ENTERPRISES</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#booking" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Book Now</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </nav>
+    </header>
 
-  <header class="hero"> 
-    <h1>VISHWAKARMA ENTERPRISES</h1>
-    <p> Civil work • Electrician • Plumbing • Furniture • Windows • Painting</p>
-  </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Professional Home Services in Thane, Mumbai</h1>
+            <p class="hero-subtitle">Quality work, affordable prices, and customer satisfaction guaranteed</p>
+            <div class="service-tags">
+                <span class="service-tag">✓ Licensed Professionals</span>
+                <span class="service-tag">✓ 24/7 Available</span>
+                <span class="service-tag">✓ Best Prices</span>
+                <span class="service-tag">✓ Quick Service</span>
+            </div>
+            <div class="cta-buttons">
+                <a href="#booking" class="btn btn-primary">Book a Service</a>
+                <a href="tel:+919892776068" class="btn btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </section>
 
-  <nav>
-    <a href="#civil-work">Civil Work</a>
-    <a href="#electrician">Electrician</a>
-    <a href="#plumbing">Plumbing</a>
-    <a href="#furniture">Furniture</a>
-    <a href="#windows">Windows</a>
-    <a href="#painting">Painting</a>
-    <a href="#contact">Contact</a>
-    <a href="#booking">Book Service</a>
-  </nav>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Professional solutions for all your home service needs</p>
+            </div>
 
-  
-  <!-- Civil Work -->
-<section id="civil-work">
-  <img src="civil work.png" alt="Civil Work" style="width:330px; height:250px;">
-  <h1>Civil Work Services</h1>
+            <!-- Civil Work -->
+            <div class="service-category" id="civil-work">
+                <div class="category-header">
+                    <h3>🏗️ Civil Work Services</h3>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card" onclick="scrollToBooking('Civil Work - Construction & Renovation')">
+                        <div class="service-image">🏠</div>
+                        <div class="service-content">
+                            <h4>Construction & Renovation</h4>
+                            <p>Complete house construction, renovation, and structural work with quality materials and expert craftsmanship.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="scrollToBooking('Civil Work - Repair & Maintenance')">
+                        <div class="service-image">🔧</div>
+                        <div class="service-content">
+                            <h4>Repair & Maintenance</h4>
+                            <p>Professional wall repair, plastering, leakage fixing, and comprehensive maintenance services.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <div class="services">
-    
-    <div class="card">
-      <img src="construction.png" alt="Construction" style="width:100px; height:100px;">
-      <h3>Construction & Renovation</h3>
-      <p>House construction, renovation, and structural work.</p>
-      <button onclick="openBooking('Civil Work - Construction & Renovation')">
-  Book Now
-</button>
+            <!-- Electrician -->
+            <div class="service-category" id="electrician">
+                <div class="category-header">
+                    <h3>⚡ Electrician Services</h3>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card" onclick="scrollToBooking('Electrician - Wiring & Installation')">
+                        <div class="service-image">💡</div>
+                        <div class="service-content">
+                            <h4>Wiring & Installation</h4>
+                            <p>Professional electrical wiring, lighting solutions, and complete electrical setup for homes and offices.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="scrollToBooking('Electrician - Repair & Maintenance')">
+                        <div class="service-image">🔌</div>
+                        <div class="service-content">
+                            <h4>Repair & Maintenance</h4>
+                            <p>Quick and reliable fixes for all electrical issues, faults, and emergency repairs.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    </div>
+            <!-- Plumbing -->
+            <div class="service-category" id="plumbing">
+                <div class="category-header">
+                    <h3>🚰 Plumbing Services</h3>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card" onclick="scrollToBooking('Plumbing - Leak Repairs')">
+                        <div class="service-image">💧</div>
+                        <div class="service-content">
+                            <h4>Leak Repairs</h4>
+                            <p>Expert fixing of taps, pipes, and water leaks with guaranteed results and lasting solutions.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="scrollToBooking('Plumbing - Bathroom Setup')">
+                        <div class="service-image">🚿</div>
+                        <div class="service-content">
+                            <h4>Bathroom Setup</h4>
+                            <p>Complete installation of bathroom fittings, pipelines, and modern fixtures.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="card">
-      <img src="repair.png" alt="Repair" style="width:100px; height:100px;">
-      <h3>Repair & Maintenance</h3>
-      <p>Wall repair, plastering, leakage fixing & maintenance.</p>
-      <button onclick="openBooking('Civil Work - Repair & Maintenance')">Book Now</button>
-    </div>
+            <!-- Furniture -->
+            <div class="service-category" id="furniture">
+                <div class="category-header">
+                    <h3>🪑 Furniture Works</h3>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card" onclick="scrollToBooking('Furniture - Custom Furniture')">
+                        <div class="service-image">🛋️</div>
+                        <div class="service-content">
+                            <h4>Custom Furniture</h4>
+                            <p>Design and build custom furniture perfectly tailored to your space and requirements.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="scrollToBooking('Furniture - Repair & Polishing')">
+                        <div class="service-image">✨</div>
+                        <div class="service-content">
+                            <h4>Repair & Polishing</h4>
+                            <p>Restore and revitalize old furniture with expert repair and professional polishing services.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  </div>
-</section>
-<span></span>
+            <!-- Windows -->
+            <div class="service-category" id="windows">
+                <div class="category-header">
+                    <h3>🪟 Windows Works</h3>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card" onclick="scrollToBooking('Windows - Window Installation')">
+                        <div class="service-image">🏢</div>
+                        <div class="service-content">
+                            <h4>Window Installation</h4>
+                            <p>Professional installation of modern, durable, and energy-efficient windows for your property.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="scrollToBooking('Windows - Repair & Replacement')">
+                        <div class="service-image">🔨</div>
+                        <div class="service-content">
+                            <h4>Repair & Replacement</h4>
+                            <p>Fix broken glass, frames, and window fittings with quality materials and workmanship.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Electrician -->
-  <section id="electrician">
-    <img src="electrician.png" alt="Electrician" style="width:330px; height:250px;">
-    <h1>Electrician Services</h1>
-    <div class="services">
-      <div class="card">
-        <img src="homerepair.png" alt="Wiring" style="width:100px; height:100px;">
-        <h3>Wiring & Installation</h3>
-        <p>Professional wiring, lighting, and electrical setup.</p>
-        <button onclick="openBooking('Electrician - Wiring & Installation')">Book Now</button>
-      </div>
-      <div class="card">
-        <img src="repairing.png" alt="Repair" style="width:100px; height:100px;">
-        <h3>Repair & Maintenance</h3>
-        <p>Quick fixes for electrical issues at home or office.</p>
-        <button onclick="openBooking('Electrician - Repair & Maintenance')">Book Now</button>
-      </div>
-    </div>
-  </section>
-  <span></span>
+            <!-- Painting -->
+            <div class="service-category" id="painting">
+                <div class="category-header">
+                    <h3>🎨 Painting Works</h3>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card" onclick="scrollToBooking('Painting - Interior Painting')">
+                        <div class="service-image">🖌️</div>
+                        <div class="service-content">
+                            <h4>Interior Painting</h4>
+                            <p>Beautiful wall finishes with perfect color combinations to transform your living space.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="scrollToBooking('Painting - Exterior Painting')">
+                        <div class="service-image">🏠</div>
+                        <div class="service-content">
+                            <h4>Exterior Painting</h4>
+                            <p>Weather-resistant paints to protect and beautify your building's exterior surfaces.</p>
+                            <button class="btn-book">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Plumbing -->
-  <section id="plumbing">
-    <img src="plumbingservices.png" alt="Plumbing" style="width:330px; height:250px;"> 
-    <h1>Plumbing Services</h1>
-    <div class="services">
-      <div class="card">
-        <img src="leakagereapair.png" alt="Leak Repair" style="width:100px; height:100px;">
-        <h3>Leak Repairs</h3>
-        <p>Fixing taps, pipes, and water leaks efficiently.</p>
-        <button onclick="openBooking('Plumbing - Leak Repairs')">Book Now</button>
-      </div>
-      <div class="card">
-        <img src="bathroomsetup.png" alt="Bathroom Setup" style="width:100px; height:100px;">
-        <h3>Bathroom Setup</h3>
-        <p>Complete installation of bathroom fittings and pipelines.</p>
-        <button onclick="openBooking('Plumbing - Bathroom Setup')">Book Now</button>
-      </div>
-    </div>
-  </section>
+    <!-- Contact & Booking Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>We're here to help with all your home service needs</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="info-item">
+                        <div class="info-icon">👤</div>
+                        <div>
+                            <strong>Contact Person</strong>
+                            Ramesh Vishwakarma
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <strong>Phone / WhatsApp</strong>
+                            <a href="tel:+919892776068" style="color: white; text-decoration: none;">+91 98927 76068</a><br>
+                            <a href="tel:+919730488747" style="color: white; text-decoration: none;">+91 97304 88747</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div>
+                            <strong>Email</strong>
+                            vishwakarmaenterprise6068@gmail.com
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Location</strong>
+                            Thane, Mumbai (All Nearby Areas) - 421302
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🕘</div>
+                        <div>
+                            <strong>Working Hours</strong>
+                            9 AM – 9 PM (All Days)
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Furniture -->
-  <section id="furniture">
-    <img src="furnitureworks.png" alt="Furniture" style="width:330px; height:250px;">
-    <h1>Furniture Works</h1>
-    <div class="services">
-      <div class="card">
-        <img src="customfurniture.png" alt="Custom Furniture" style="width:100px; height:100px;">
-        <h3>Custom Furniture</h3>
-        <p>Design and build furniture tailored to your needs.</p>
-        <button onclick="openBooking('Furniture - Custom Furniture')">Book Now</button>
-      </div>
-      <div class="card">
-        <img src="furniturerepair.png" alt="Furniture Repair" style="width:100px; height:100px;">
-        <h3>Repair & Polishing</h3>
-        <p>Restore old furniture with expert repair and polish.</p>
-        <button onclick="openBooking('Furniture - Repair & Polishing')">Book Now</button>
-      </div>
-    </div>
-  </section>
+                <div class="contact-form" id="booking">
+                    <h3 style="margin-bottom: 1.5rem;">Book a Service</h3>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Select Service *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Choose a service...</option>
+                                <option value="Civil Work - Construction & Renovation">Civil Work - Construction & Renovation</option>
+                                <option value="Civil Work - Repair & Maintenance">Civil Work - Repair & Maintenance</option>
+                                <option value="Electrician - Wiring & Installation">Electrician - Wiring & Installation</option>
+                                <option value="Electrician - Repair & Maintenance">Electrician - Repair & Maintenance</option>
+                                <option value="Plumbing - Leak Repairs">Plumbing - Leak Repairs</option>
+                                <option value="Plumbing - Bathroom Setup">Plumbing - Bathroom Setup</option>
+                                <option value="Furniture - Custom Furniture">Furniture - Custom Furniture</option>
+                                <option value="Furniture - Repair & Polishing">Furniture - Repair & Polishing</option>
+                                <option value="Windows - Window Installation">Windows - Window Installation</option>
+                                <option value="Windows - Repair & Replacement">Windows - Repair & Replacement</option>
+                                <option value="Painting - Interior Painting">Painting - Interior Painting</option>
+                                <option value="Painting - Exterior Painting">Painting - Exterior Painting</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Additional Details</label>
+                            <textarea id="message" name="message" placeholder="Tell us more about your requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Booking Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Windows -->
-  <section id="windows">
-    <img src="windowworks.png" alt="Windows" style="width:330px; height:250px;">
-    <h1>Windows Works</h1>
-    <div class="services">
-      <div class="card">
-        <img src="windowinstall.png" alt="Window Installation" style="width:100px; height:100px;">
-        <h3>Window Installation</h3>
-        <p>Professional installation of modern and durable windows.</p>
-        <button onclick="openBooking('Windows - Window Installation')">Book Now</button>
-      </div>
-      <div class="card">
-        <img src="windowrepair.png" alt="Window Repair" style="width:100px; height:100px;">
-        <h3>Repair & Replacement</h3>
-        <p>Fix broken glass, frames, and window fittings.</p>
-        <button onclick="openBooking('Windows - Repair & Replacement')">Book Now</button>
-      </div>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3 style="margin-bottom: 1rem;">VISHWAKARMA ENTERPRISES</h3>
+                <p>🛠 Services: Electrician | Plumbing | Painting | Furniture | Civil Work</p>
+                <p>Professional home services with customer satisfaction guaranteed</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vishwakarma Enterprises. All rights reserved</p>
+                <p>Designed by Vivek Vishwakarma</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Painting -->
-  <section id="painting">
-    <img src="paintfront.png" alt="Painter" style="width:330px; height:250px;">
-    <h1>Painting Works</h1>
-    <div class="services">
-      <div class="card">
-        <img src="interiorpainting.png" alt="Interior Painting" style="width:100px; height:100px;">
-        <h3>Interior Painting</h3>
-        <p>Beautiful wall finishes and color combinations for your home.</p>
-        <button onclick="openBooking('Painting - Interior Painting')">Book Now</button>
-      </div>
-      <div class="card">
-        <img src="exteriorpainting.png" alt="Exterior Painting" style="width:100px; height:100px;">
-        <h3>Exterior Painting</h3>
-        <p>Weather-resistant paints to protect and beautify your building.</p>
-        <button onclick="openBooking('Painting - Exterior Painting')">Book Now</button>
-      </div>
-    </div>
-  </section>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919892776068" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <span>💬</span>
+    </a>
 
-  
-<!-- Contact -->
-  <section id="contact">
-  <h2>Contact Vishwakarma Enterprises</h2>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
 
-  <p>
-    We are committed to providing fast, affordable and professional 
-    home services with customer satisfaction as our top priority.
-  </p>
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
 
-<br><br>
-  <form id="bookingForm">
-  <select name="service" id="service" required>
-    <option value="">Select Service</option>
-    <option value='Civil Work - Construction & Renovation'>Civil Work - Construction & Renovation</option>
-    <option value='Civil Work - Repair & Maintenance'>Civil Work - Repair & Maintenance</option>
-    <option value='Electrician - Wiring & Installation'>Electrician - Wiring & Installation</option>
-    <option value='Electrician - Repair & Maintenance'>Electrician - Repair & Maintenance</option>
-    <option value='Plumbing - Leak Repairs'>Plumbing - Leak Repairs</option>
-    <option value='Plumbing - Bathroom Setup'>Plumbing - Bathroom Setup</option>
-    <option value="Furniture - Custom Furniture">Furniture - Custom Furniture</option>
-    <option value="Furniture - Repair & Polishing">Furniture - Repair & Polishing</option>
-    <option value="Windows - Window Installation">Windows - Window Installation</option>
-    <option value="Windows - Repair & Replacement">Windows - Repair & Replacement</option>
-    <option value="Painting - Interior Painting">Painting - Interior Painting</option>
-    <option value="Painting - Exterior Painting">Painting - Exterior Painting</option>
-  </select>
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
 
-  <input type="text" name="name" id="name" placeholder="Your Name" required />
-  <input type="email" name="email" id="email" placeholder="Your Email" required />
-  <input type="tel" name="phone" id="phone" placeholder="Phone" required />
-<!-- 🔥 NEW FIELD ADDED -->
-  <textarea
-  id="message"
-  name="message"
-  placeholder="Describe your requirement..."
-  rows="4"
-  required>
-</textarea>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
-  <button type="submit">Book Now</button>
-</form>
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = `Hello! I'd like to book a service.%0A%0AName: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AService: ${service}%0ADetails: ${message}`;
+            const whatsappURL = `https://wa.me/919892776068?text=${whatsappMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        });
 
-<p id="msg"></p>
+        // Function to scroll to booking and pre-select service
+        function scrollToBooking(serviceName) {
+            document.getElementById('service').value = serviceName;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
 
-<script src="booking.js"></script>
-  
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-  
-  <p>
-    👤 <b>Contact Person:</b> Ramesh Vishwakarma <br>
-    📞 <b>Phone / WhatsApp:</b> +91 98927 76068, +91 97304 88747 <br>
-    📧 <b>Email:</b> vishwakarmaenterprise6068@gmail.com <br>
-    📍 <b>Location:</b> Thane, Mumbai (All Nearby Areas) - 421302<br><br>
-    <iframe
-    src="https://www.google.com/maps?q=19.2395,73.01625&output=embed"
-    width=70%"
-    height="150"
-    style="border:0;"
-    allowfullscreen
-    loading="lazy">
-  </iframe>
-  </p>
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
 
-  <p>
-    🛠 Services: Electrician | Plumbing | Painting | Furniture | Civil Work
-  </p>
-
-  <p>
-    🕘 <b>Working Hours:</b> 9 AM – 9 PM (All Days)
-  </p>
-</section>
-
-
-  <footer>
-    <p>&copy; 2026 Home Services. All rights reserved <br><br> Designed by Vivek Vishwakarma.</p>
-  </footer>
-
+        document.querySelectorAll('.service-card, .service-category').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
-
-
+</html>
