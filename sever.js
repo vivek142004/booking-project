@@ -9,13 +9,13 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/booking", (req, res) => {
-  const { service, name, email, phone } = req.body;
+  const { service, name, email, phone, message } = req.body;
 
-  if (!service || !name || !email || !phone) {
+  if (!service || !name || !email || !phone || !message) {
     return res.status(400).json({ message: "❌ All fields required" });
   }
 
-  console.log("📥 New booking received:", { service, name, email, phone });
+  console.log("📥 New booking received:", { service, name, email, phone, message });
   res.json({ message: `✅ Booking confirmed for ${service}, ${name}!` });
 });
 

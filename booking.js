@@ -1,4 +1,3 @@
- HEAD
 console.log("BOOKING JS LOADED ✅");
 
 document.getElementById("bookingForm").addEventListener("submit", async (e) => {
