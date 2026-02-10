@@ -1,0 +1,28 @@
+<form id="bookingForm">
+  <select id="service" name="service" required>
+    <option value="">Select Service</option>
+    <option value="Civil Work">Civil Work</option>
+    <option value="Electrician">Electrician</option>
+    <option value="Plumbing">Plumbing</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Windows">Windows</option>
+    <option value="Painting">Painting</option>
+  </select>
+
+  <input type="text" id="name" name="name" placeholder="Your Name" required />
+  <input type="email" id="email" name="email" placeholder="Your Email" required />
+  <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
+  <textarea
+  id="message"
+  name="message"
+  placeholder="Describe your requirement..."
+  rows="4"
+  required></textarea>
+
+
+  <button type="submit">Book Now</button>
+</form>
+
+<p id="msg"></p>
+
+<script src="booking.js"></script>

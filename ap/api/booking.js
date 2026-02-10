@@ -1,40 +1,30 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
-const app = express();
+export default async function handler(req, res) {
 
-// ✅ MIDDLEWARE
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// 🔐 EMAIL CONFIG
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "vishwakarmaenterprise@6068@gmail.com",        // 👈 same email
-    pass: "Enterprises@6068"            // 👈 Gmail App Password
+  // ❌ browser GET block
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method Not Allowed" });
   }
-});
 
-// ✅ HOME ROUTE (ALWAYS BEFORE listen)
-app.get("/", (req, res) => {
-  res.send("Server is running ✅");
-});
-
-// 📩 BOOKING ROUTE
-app.post("/booking", async (req, res) => {
   const { service, name, phone } = req.body;
-
-  console.log("BOOKING DATA:", req.body); // 👈 DEBUG
 
   if (!service || !name || !phone) {
     return res.status(400).json({ message: "All fields required ❌" });
   }
 
   try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
     await transporter.sendMail({
-      from: `"Booking Website" <vishwakarmaenterprise@6068@gmail.com>`,
-      to: "vishwakarmaenterprise@6068@gmail.com", // 👈 same email
+      from: `"Booking Website" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
       subject: "📩 New Booking Received",
       html: `
         <h2>New Booking</h2>
@@ -44,16 +34,22 @@ app.post("/booking", async (req, res) => {
       `
     });
 
-    res.json({ message: "Booking successful & email sent ✅" });
+    return res.status(200).json({
+      message: "Booking successful & email sent ✅"
+    });
 
   } catch (error) {
     console.error("EMAIL ERROR:", error);
-    res.status(500).json({ message: "Email sending failed ❌" });
+    return res.status(500).json({
+      message: "Email sending failed ❌"
+    });
   }
-});
-
-// 🚀 SERVER (ALWAYS LAST)
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+}
+app.get("/test-whatsapp", async (req, res) => {
+  await client.messages.create({
+    from: "whatsapp:+14155238886",
+    to: "whatsapp:+918169758692", // wahi number jo join kiya
+    body: "✅ WhatsApp sandbox connected successfully"
+  });
+  res.send("WhatsApp sent");
 });

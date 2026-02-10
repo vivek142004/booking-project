@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VISHWAKARMA ENTERPRISES - Electrician, Plumbing, Furniture, Windows & Painter</title>
+ <title>VISHWAKARMA ENTERPRISES - Electrician, Plumbing, Furniture, Windows & Painter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -99,12 +99,13 @@
 </head>
 <body>
 
-  <header>
+  <header class="hero"> 
     <h1>VISHWAKARMA ENTERPRISES</h1>
-    <p>Electrician • Plumbing • Furniture • Windows • Painting</p>
+    <p> Civil work • Electrician • Plumbing • Furniture • Windows • Painting</p>
   </header>
 
   <nav>
+    <a href="#civil-work">Civil Work</a>
     <a href="#electrician">Electrician</a>
     <a href="#plumbing">Plumbing</a>
     <a href="#furniture">Furniture</a>
@@ -114,22 +115,51 @@
     <a href="#booking">Book Service</a>
   </nav>
 
+  
+  <!-- Civil Work -->
+<section id="civil-work">
+  <img src="civil work.png" alt="Civil Work" style="width:400px; height:200px;">
+  <h1>Civil Work Services</h1>
+
+  <div class="services">
+    
+    <div class="card">
+      <img src="construction.png" alt="Construction" style="width:100px; height:100px;">
+      <h3>Construction & Renovation</h3>
+      <p>House construction, renovation, and structural work.</p>
+      <button onclick="openBooking('Civil Work - Construction & Renovation')">
+  Book Now
+</button>
+
+    </div>
+
+    <div class="card">
+      <img src="repair.png" alt="Repair" style="width:100px; height:100px;">
+      <h3>Repair & Maintenance</h3>
+      <p>Wall repair, plastering, leakage fixing & maintenance.</p>
+      <button onclick="openBooking('Civil Work - Repair & Maintenance')">Book Now</button>
+    </div>
+
+  </div>
+</section>
+<span></span>
+
   <!-- Electrician -->
   <section id="electrician">
-    <img src="electrician.png" alt="Electrician" style="width:200px; height:200px;">
+    <img src="electrician.png" alt="Electrician" style="width:400px; height:200px;">
     <h1>Electrician Services</h1>
     <div class="services">
       <div class="card">
         <img src="homerepair.png" alt="Wiring" style="width:100px; height:100px;">
         <h3>Wiring & Installation</h3>
         <p>Professional wiring, lighting, and electrical setup.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Electrician - Wiring & Installation')">Book Now</button>
       </div>
       <div class="card">
         <img src="repairing.png" alt="Repair" style="width:100px; height:100px;">
         <h3>Repair & Maintenance</h3>
         <p>Quick fixes for electrical issues at home or office.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Electrician - Repair & Maintenance')">Book Now</button>
       </div>
     </div>
   </section>
@@ -137,20 +167,20 @@
 
   <!-- Plumbing -->
   <section id="plumbing">
-    <img src="plumbingservices.png" alt="Plumbing" style="width:200px; height:200px;"> 
+    <img src="plumbingservices.png" alt="Plumbing" style="width:400px; height:200px;"> 
     <h1>Plumbing Services</h1>
     <div class="services">
       <div class="card">
         <img src="leakagereapair.png" alt="Leak Repair" style="width:100px; height:100px;">
         <h3>Leak Repairs</h3>
         <p>Fixing taps, pipes, and water leaks efficiently.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Plumbing - Leak Repairs')">Book Now</button>
       </div>
       <div class="card">
         <img src="bathroomsetup.png" alt="Bathroom Setup" style="width:100px; height:100px;">
         <h3>Bathroom Setup</h3>
         <p>Complete installation of bathroom fittings and pipelines.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Plumbing - Bathroom Setup')">Book Now</button>
       </div>
     </div>
   </section>
@@ -164,13 +194,13 @@
         <img src="customfurniture.png" alt="Custom Furniture" style="width:100px; height:100px;">
         <h3>Custom Furniture</h3>
         <p>Design and build furniture tailored to your needs.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Furniture - Custom Furniture')">Book Now</button>
       </div>
       <div class="card">
         <img src="furniturerepair.png" alt="Furniture Repair" style="width:100px; height:100px;">
         <h3>Repair & Polishing</h3>
         <p>Restore old furniture with expert repair and polish.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Furniture - Repair & Polishing')">Book Now</button>
       </div>
     </div>
   </section>
@@ -184,19 +214,19 @@
         <img src="windowinstall.png" alt="Window Installation" style="width:100px; height:100px;">
         <h3>Window Installation</h3>
         <p>Professional installation of modern and durable windows.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Windows - Window Installation')">Book Now</button>
       </div>
       <div class="card">
         <img src="windowrepair.png" alt="Window Repair" style="width:100px; height:100px;">
         <h3>Repair & Replacement</h3>
         <p>Fix broken glass, frames, and window fittings.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Windows - Repair & Replacement')">Book Now</button>
       </div>
     </div>
   </section>
 
-  <!-- Painter -->
-  <section id="painter">
+  <!-- Painting -->
+  <section id="painting">
     <img src="paintfront.png" alt="Painter" style="width:400px; height:200px;">
     <h1>Painting Works</h1>
     <div class="services">
@@ -204,48 +234,94 @@
         <img src="interiorpainting.png" alt="Interior Painting" style="width:100px; height:100px;">
         <h3>Interior Painting</h3>
         <p>Beautiful wall finishes and color combinations for your home.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Painting - Interior Painting')">Book Now</button>
       </div>
       <div class="card">
         <img src="exteriorpainting.png" alt="Exterior Painting" style="width:100px; height:100px;">
         <h3>Exterior Painting</h3>
         <p>Weather-resistant paints to protect and beautify your building.</p>
-        <button onclick="window.location.href='#booking'">Book Now</button>
+        <button onclick="openBooking('Painting - Exterior Painting')">Book Now</button>
       </div>
     </div>
   </section>
 
+  
+<!-- Contact -->
+  <section id="contact">
+  <h2>Contact Vishwakarma Enterprises</h2>
 
+  <p>
+    We are committed to providing fast, affordable and professional 
+    home services with customer satisfaction as our top priority.
+  </p>
+
+<br><br>
   <form id="bookingForm">
   <select name="service" id="service" required>
     <option value="">Select Service</option>
-    <option value="Electrician">Electrician</option>
-    <option value="Plumbing">Plumbing</option>
-    <option value="Furniture">Furniture</option>
-    <option value="Windows">Windows</option>
-    <option value="Grilling">Grilling</option>
+    <option value='Civil Work - Construction & Renovation'>Civil Work - Construction & Renovation</option>
+    <option value='Civil Work - Repair & Maintenance'>Civil Work - Repair & Maintenance</option>
+    <option value='Electrician - Wiring & Installation'>Electrician - Wiring & Installation</option>
+    <option value='Electrician - Repair & Maintenance'>Electrician - Repair & Maintenance</option>
+    <option value='Plumbing - Leak Repairs'>Plumbing - Leak Repairs</option>
+    <option value='Plumbing - Bathroom Setup'>Plumbing - Bathroom Setup</option>
+    <option value="Furniture - Custom Furniture">Furniture - Custom Furniture</option>
+    <option value="Furniture - Repair & Polishing">Furniture - Repair & Polishing</option>
+    <option value="Windows - Window Installation">Windows - Window Installation</option>
+    <option value="Windows - Repair & Replacement">Windows - Repair & Replacement</option>
+    <option value="Painting - Interior Painting">Painting - Interior Painting</option>
+    <option value="Painting - Exterior Painting">Painting - Exterior Painting</option>
   </select>
 
   <input type="text" name="name" id="name" placeholder="Your Name" required />
+  <input type="email" name="email" id="email" placeholder="Your Email" required />
   <input type="tel" name="phone" id="phone" placeholder="Phone" required />
-
+<!-- 🔥 NEW FIELD ADDED -->
+  <textarea 
+    name="message" 
+    id="message" 
+    placeholder="Describe your requirement..." 
+    rows="4"
+    required>
+  </textarea>
   <button type="submit">Book Now</button>
 </form>
 
 <p id="msg"></p>
 
-
+<script src="booking.js"></script>
   
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: vishwakarmaenterprise6068@gmail.com | Phone: +91 9892776068  |  +91 9730488747</p>
-  </section>
+  
+  <p>
+    👤 <b>Contact Person:</b> Ramesh Vishwakarma <br>
+    📞 <b>Phone / WhatsApp:</b> +91 98927 76068, +91 97304 88747 <br>
+    📧 <b>Email:</b> vishwakarmaenterprise6068@gmail.com <br>
+    📍 <b>Location:</b> Thane, Mumbai (All Nearby Areas) - 421302<br><br>
+    <iframe
+    src="https://www.google.com/maps?q=19.2395,73.01625&output=embed"
+    width=70%"
+    height="150"
+    style="border:0;"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+  </p>
+
+  <p>
+    🛠 Services: Electrician | Plumbing | Painting | Furniture | Civil Work
+  </p>
+
+  <p>
+    🕘 <b>Working Hours:</b> 9 AM – 9 PM (All Days)
+  </p>
+</section>
+
 
   <footer>
-    <p>&copy; 2026 Home Services. All rights reserved.</p>
+    <p>&copy; 2026 Home Services. All rights reserved <br><br> Designed by Vivek Vishwakarma.</p>
   </footer>
 
 </body>
+
 </html>
